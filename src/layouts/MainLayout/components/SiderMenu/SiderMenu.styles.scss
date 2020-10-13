@@ -1,0 +1,24 @@
+@import "src/styles/variables";
+
+.SiderMenu {
+  background-color: transparent;
+  color: rgba(#f8f8f8, 0.7);
+
+  &__item {
+    background-color: rgba($primary, 0.3);
+    margin-top: 16px !important;
+
+    &:hover {
+      color: $primary-light;
+    }
+  }
+}
+
+.ant-menu-item-selected {
+  color: #f8f8f8;
+  background-color: rgba($primary, 0.6) !important;
+
+  &::after {
+    border-right: 3px solid $primary-light !important;
+  }
+}

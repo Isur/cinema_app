@@ -1,0 +1,14 @@
+@import "src/styles/variables";
+
+.EntryLayout {
+  height: 100vh;
+  overflow: hidden;
+
+  &__content {
+    height: calc(100vh - 30px);
+  }
+
+  &__footer {
+    height: 30px;
+  }
+}

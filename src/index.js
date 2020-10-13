@@ -3,10 +3,20 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { ConnectedRouter } from "connected-react-router";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor, history } from "./store/store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
+      </ConnectedRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

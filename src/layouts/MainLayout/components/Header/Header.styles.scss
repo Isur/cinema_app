@@ -1,0 +1,36 @@
+@import "src/styles/variables";
+
+.HeaderBar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+
+  &__basket {
+    opacity: 0.7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(#b34f38, 0.7);
+    padding: 0 1rem 0 1rem;
+    transition: all 0.4s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+      background-color: #b34f38;
+    }
+
+    &__icon {
+      color: #fff;
+      font-size: 24px;
+    }
+
+    &__timer {
+      margin-left: 2rem;
+      color: #fff;
+      font-size: 18px;
+    }
+  }
+}
