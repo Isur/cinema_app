@@ -7,6 +7,9 @@ import { ConnectedRouter } from "connected-react-router";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor, history } from "./store/store";
+import { setupAxios } from "./config/axiosConf";
+
+setupAxios();
 
 ReactDOM.render(
   <React.StrictMode>

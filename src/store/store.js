@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import rootReducer from "./rootReducer";
 import { createBrowserHistory } from "history";
+import { watchUserSaga } from "./User/User.sagas";
 
 export const history = createBrowserHistory();
 
@@ -24,3 +25,5 @@ export const store = createStore(
   applyMiddleware(connectedRouterMiddleware, sagaMiddleware, logger)
 );
 export const persistor = persistStore(store);
+
+sagaMiddleware.run(watchUserSaga);

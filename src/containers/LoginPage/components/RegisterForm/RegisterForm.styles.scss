@@ -1,0 +1,20 @@
+.RegisterForm {
+  padding: 2rem 2rem 0 2rem;
+  background-color: rgba(#b34f38, .6);
+  border-radius: 16px;
+  width: 25vw;
+
+  &__Button {
+    background-color: #7e2111 !important;
+    border-color: #7e2111 !important;
+  }
+
+  &__Link {
+    float: right;
+    margin-top: 8px;
+  }
+}
+
+.ant-form-item-explain-error {
+  color: #f8f8f8 !important;
+}

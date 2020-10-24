@@ -3,6 +3,7 @@
 .EntryLayout {
   height: 100vh;
   overflow: hidden;
+  background-color: #7e2111;
 
   &__content {
     height: calc(100vh - 30px);
