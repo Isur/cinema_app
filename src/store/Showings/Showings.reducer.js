@@ -1,4 +1,6 @@
 import {
+  ADD_SHOWING,
+  ADD_SHOWING_SUCCESS,
   FETCH_SHOWINGS,
   FETCH_SHOWINGS_FAIL,
   FETCH_SHOWINGS_SUCCESS,
@@ -26,6 +28,11 @@ const showingsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
+      };
+    case ADD_SHOWING_SUCCESS:
+      return {
+        ...state,
+        showings: state.showings.concat(action.showing),
       };
     default:
       return { ...state };

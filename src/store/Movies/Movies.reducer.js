@@ -1,4 +1,5 @@
 import {
+  ADD_MOVIE_SUCCESS,
   FETCH_MOVIES,
   FETCH_MOVIES_FAIL,
   FETCH_MOVIES_SUCCESS,
@@ -26,6 +27,11 @@ const moviesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
+      };
+    case ADD_MOVIE_SUCCESS:
+      return {
+        ...state,
+        movies: state.movies.concat(action.movie),
       };
     default:
       return { ...state };

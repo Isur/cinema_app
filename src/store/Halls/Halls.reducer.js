@@ -1,4 +1,5 @@
 import {
+  ADD_HALL_SUCCESS,
   FETCH_HALLS,
   FETCH_HALLS_FAIL,
   FETCH_HALLS_SUCCESS,
@@ -26,6 +27,11 @@ const hallsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
+      };
+    case ADD_HALL_SUCCESS:
+      return {
+        ...state,
+        halls: state.halls.concat(action.hall),
       };
     default:
       return { ...state };

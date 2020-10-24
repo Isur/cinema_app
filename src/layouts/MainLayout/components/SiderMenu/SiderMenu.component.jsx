@@ -4,6 +4,7 @@ import {
   SettingFilled,
   VideoCameraFilled,
   IdcardFilled,
+  PlaySquareOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { push } from "connected-react-router";
@@ -24,21 +25,28 @@ const SiderMenu = () => {
         icon={<VideoCameraFilled />}
         key="movies"
       >
-        Repertuar
+        Repertoire
+      </Menu.Item>
+      <Menu.Item
+        className={"SiderMenu__item"}
+        icon={<PlaySquareOutlined />}
+        key="halls"
+      >
+        Halls
       </Menu.Item>
       <Menu.Item
         className={"SiderMenu__item"}
         icon={<IdcardFilled />}
         key="tickets"
       >
-        Moje bilety
+        My Tickets
       </Menu.Item>
       <Menu.Item
         className={"SiderMenu__item"}
         icon={<SettingFilled />}
         key={"account"}
       >
-        Profil
+        Profile
       </Menu.Item>
     </Menu>
   );
