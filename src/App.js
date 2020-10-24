@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router";
 import EntryLayout from "./layouts/EntryLayout/EntryLayout.layout";
 import MainLayout from "./layouts/MainLayout/MainLayout.layout";
 import LoginPage from "./containers/LoginPage/LoginPage.container";
+import MoviesPage from "./containers/MoviesPage/MoviesPage.container";
 
 function App() {
   return (
@@ -13,9 +14,9 @@ function App() {
           <LoginPage />
         </EntryLayout>
       </Route>
-      <Route exact path={"/app"}>
+      <Route exact path={"/movies"}>
         <MainLayout>
-          <div />
+          <MoviesPage />
         </MainLayout>
       </Route>
     </Switch>

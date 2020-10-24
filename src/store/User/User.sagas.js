@@ -47,8 +47,16 @@ function* login(action) {
         method: "POST",
       })
     );
-    yield put(loginUserSuccess(data.token));
-    yield put(push("/app"));
+    yield put(
+      loginUserSuccess(
+        data.firstName,
+        data.lastName,
+        data.userName,
+        data.role,
+        data.token
+      )
+    );
+    yield put(push("/movies"));
   } catch (e) {
     yield put(loginUserFail(e));
   }

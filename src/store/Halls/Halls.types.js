@@ -1,0 +1,7 @@
+export const FETCH_HALLS = "FETCH_HALLS";
+export const FETCH_HALLS_SUCCESS = "FETCH_HALLS_SUCCESS";
+export const FETCH_HALLS_FAIL = "FETCH_HALLS_FAIL";
+
+export const ADD_HALL = "ADD_HALL";
+export const ADD_HALL_SUCCESS = "ADD_HALL_SUCCESS";
+export const ADD_HALL_FAIL = "ADD_HALL_FAIL";

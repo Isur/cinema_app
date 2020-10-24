@@ -7,6 +7,9 @@ import { persistReducer, persistStore } from "redux-persist";
 import rootReducer from "./rootReducer";
 import { createBrowserHistory } from "history";
 import { watchUserSaga } from "./User/User.sagas";
+import { watchMoviesSaga } from "./Movies/Movies.sagas";
+import { watchShowingsSaga } from "./Showings/Showings.sagas";
+import { watchHallsSaga } from "./Halls/Halls.sagas";
 
 export const history = createBrowserHistory();
 
@@ -27,3 +30,6 @@ export const store = createStore(
 export const persistor = persistStore(store);
 
 sagaMiddleware.run(watchUserSaga);
+sagaMiddleware.run(watchMoviesSaga);
+sagaMiddleware.run(watchShowingsSaga);
+sagaMiddleware.run(watchHallsSaga);

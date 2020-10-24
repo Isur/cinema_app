@@ -39,9 +39,19 @@ export const loginUser = (userName, password) => {
   };
 };
 
-export const loginUserSuccess = (token) => {
+export const loginUserSuccess = (
+  firstName,
+  lastName,
+  userName,
+  role,
+  token
+) => {
   return {
     type: LOGIN_USER_SUCCESS,
+    firstName,
+    lastName,
+    userName,
+    role,
     token,
   };
 };
