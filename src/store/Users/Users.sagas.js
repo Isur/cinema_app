@@ -21,7 +21,7 @@ function* getUsers() {
   try {
     const { data } = yield call(() =>
       axios.request({
-        url: "/User",
+        url: "/Users",
         method: "GET",
       })
     );
@@ -35,7 +35,7 @@ function* createUser(action) {
   try {
     const { data } = yield call(() =>
       axios.request({
-        url: "/User",
+        url: "/Users",
         data: {
           FirstName: action.firstName,
           LastName: action.lastName,
@@ -56,7 +56,7 @@ function* editUser(action) {
   try {
     const { data } = yield call(() =>
       axios.request({
-        url: `/User/${action.id}`,
+        url: `/Users/${action.id}`,
         data: {
           FirstName: action.firstName,
           LastName: action.lastName,

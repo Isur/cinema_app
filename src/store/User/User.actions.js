@@ -5,7 +5,21 @@ import {
   REGISTER_USER,
   REGISTER_USER_FAIL,
   REGISTER_USER_SUCCESS,
+  RESET_TIMER,
+  START_TIMER,
 } from "./User.types";
+
+export const startTimer = () => {
+  return {
+    type: START_TIMER,
+  };
+};
+
+export const resetTimer = () => {
+  return {
+    type: RESET_TIMER,
+  };
+};
 
 export const registerUser = (firstName, lastName, userName, password) => {
   return {

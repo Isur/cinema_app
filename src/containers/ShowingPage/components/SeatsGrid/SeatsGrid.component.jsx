@@ -1,29 +1,50 @@
-import React, { useState } from "react";
-import * as _ from "lodash";
+import React from "react";
 import "./SeatsGrid.styles.scss";
 import { Affix, Button, Spin } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  buyTicket,
+  createTicket,
+  deleteTicket,
+} from "../../../../store/Tickets/Tickets.actions";
 
-const SeatsGrid = ({ X, Y, onSubmit, disabled }) => {
-  const [selectedSeats, setSelectedSeats] = useState([]);
+const SeatsGrid = ({ X, Y, user, showing, disabled }) => {
+  const dispatch = useDispatch();
 
   const loading = useSelector((state) => state.ticketsState.loading);
+  const bookedTickets = useSelector((state) => state.userState.bookedTickets);
+
+  const isTicketsEqual = (t1, t2) => {
+    return (
+      t1.fieldX === t2.seat &&
+      t1.fieldY === t2.row &&
+      t1.showingId === showing.id
+    );
+  };
 
   const selectSeat = (ticket) => {
-    if (selectedSeats.find((t) => _.isEqual(t, ticket))) {
-      setSelectedSeats([...selectedSeats.filter((s) => !_.isEqual(ticket, s))]);
+    if (bookedTickets && bookedTickets.find((t) => isTicketsEqual(t, ticket))) {
+      dispatch(
+        deleteTicket(
+          bookedTickets.find((t) => {
+            return isTicketsEqual(t, ticket);
+          }).id
+        )
+      );
     } else {
-      setSelectedSeats([...selectedSeats, ticket]);
+      dispatch(createTicket(user, showing.id, ticket.seat, ticket.row));
     }
   };
 
-  const isSelected = (r, s) => {
-    return selectedSeats.find((t) => _.isEqual(t, { row: r + 1, seat: s + 1 }));
+  const isBooked = (r, s) => {
+    return bookedTickets.find((t) =>
+      isTicketsEqual(t, { row: r + 1, seat: s + 1 })
+    );
   };
 
   const isDisabled = (r, s) => {
     return disabled.find((t) => {
-      return t.fieldX === s + 1 && t.fieldY === r + 1;
+      return t.fieldX === s + 1 && t.fieldY === r + 1 && t.status === 1;
     });
   };
 
@@ -39,7 +60,7 @@ const SeatsGrid = ({ X, Y, onSubmit, disabled }) => {
               return (
                 <div
                   className={`SeatsGrid__Seat ${
-                    isSelected(r, s) ? "selected" : ""
+                    isBooked(r, s) ? "selected" : ""
                   } ${isDisabled(r, s) ? "disabled" : ""}`}
                   onClick={() =>
                     isDisabled(r, s)
@@ -56,15 +77,24 @@ const SeatsGrid = ({ X, Y, onSubmit, disabled }) => {
       })}
       <Affix offsetBottom={10}>
         <Button
-          disabled={!selectedSeats.length}
+          disabled={!bookedTickets.length}
           size={"large"}
           type="primary"
           onClick={() => {
-            onSubmit(selectedSeats);
-            setSelectedSeats([]);
+            bookedTickets.forEach((ticket) => {
+              dispatch(
+                buyTicket(
+                  ticket.id,
+                  user,
+                  ticket.showingId,
+                  ticket.fieldX,
+                  ticket.fieldY
+                )
+              );
+            });
           }}
         >
-          Buy {selectedSeats.length} tickets
+          Buy {bookedTickets.length} tickets
         </Button>
       </Affix>
     </div>

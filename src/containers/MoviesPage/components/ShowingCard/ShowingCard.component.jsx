@@ -37,7 +37,9 @@ const ShowingCard = ({ showing }) => {
     >
       <img
         className={"ShowingCard__Image"}
-        src={"http://placehold.it/600x200"}
+        src={`https://picsum.photos/id/${Math.ceil(
+          Math.random() * 100
+        )}/600/200`}
       />
       <Divider style={{ margin: 10 }} />
       <h3 className={"ShowingCard__Title"}>

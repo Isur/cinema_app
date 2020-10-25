@@ -12,7 +12,12 @@ const MovieCard = ({ movie }) => {
       className={"MovieCard"}
       onClick={() => dispatch(push(`/movies/${movie.id}`))}
     >
-      <img className={"MovieCard__Image"} src={"http://placehold.it/600x200"} />
+      <img
+        className={"MovieCard__Image"}
+        src={`https://picsum.photos/id/${Math.ceil(
+          Math.random() * 100
+        )}/600/200`}
+      />
       <Divider style={{ margin: 10 }} />
       <h3 className={"MovieCard__Title"}>{movie.title}</h3>
       <div>

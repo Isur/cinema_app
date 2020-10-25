@@ -33,12 +33,6 @@ const ShowingPage = () => {
   const showings = useSelector((state) => state.showingsState.showings);
   const halls = useSelector((state) => state.hallsState.halls);
 
-  const bookSeats = (seats) => {
-    seats.forEach((seat) => {
-      dispatch(createTicket(user, id, seat.seat, seat.row));
-    });
-  };
-
   useEffect(() => {
     dispatch(fetchHalls());
     dispatch(fetchShowings());
@@ -88,7 +82,8 @@ const ShowingPage = () => {
           X={hall.sizeX}
           Y={hall.sizeY}
           disabled={disabledTickets}
-          onSubmit={(seats) => bookSeats(seats)}
+          showing={show}
+          user={user}
         />
       ) : (
         <Spin />

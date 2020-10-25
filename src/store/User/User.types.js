@@ -5,3 +5,6 @@ export const REGISTER_USER_FAIL = "REGISTER_USER_FAIL";
 export const LOGIN_USER = "LOGIN_USER";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const LOGIN_USER_FAIL = "LOGIN_USER_FAIL";
+
+export const START_TIMER = "START_TIMER";
+export const RESET_TIMER = "RESET_TIMER";

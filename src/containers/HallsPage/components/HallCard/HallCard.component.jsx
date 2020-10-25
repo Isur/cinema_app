@@ -5,7 +5,12 @@ import { Divider } from "antd";
 const HallCard = ({ hall, onClick }) => {
   return (
     <div className={"HallCard"} onClick={() => onClick()}>
-      <img className={"HallCard__Image"} src={"http://placehold.it/200x600"} />
+      <img
+        className={"HallCard__Image"}
+        src={`https://picsum.photos/id/${Math.ceil(
+          Math.random() * 100
+        )}/200/600`}
+      />
       <Divider style={{ margin: 10 }} />
       <h3 className={"HallCard__Name"}>{hall.name}</h3>
       <br />

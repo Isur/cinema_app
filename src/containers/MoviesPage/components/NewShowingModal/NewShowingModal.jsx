@@ -25,7 +25,6 @@ const NewShowingModel = ({ visible, onClose, showing }) => {
 
   useEffect(() => {
     if (edited) {
-      console.log(edited);
       setLoading(false);
     }
   }, [edited]);
