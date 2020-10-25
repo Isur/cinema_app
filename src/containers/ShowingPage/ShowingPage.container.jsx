@@ -4,12 +4,11 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Divider, Spin } from "antd";
 import SeatsGrid from "./components/SeatsGrid/SeatsGrid.component";
-import { createTicket } from "../../store/Tickets/Tickets.actions";
-import { push } from "connected-react-router";
 import { fetchHalls } from "../../store/Halls/Halls.actions";
 import { fetchShowings } from "../../store/Showings/Showings.actions";
 import { PlusCircleFilled } from "@ant-design/icons";
 import NewShowingModel from "../MoviesPage/components/NewShowingModal/NewShowingModal";
+import { fetchTickets } from "../../store/Tickets/Tickets.actions";
 
 const ShowingPage = () => {
   const { id } = useParams();
@@ -24,9 +23,15 @@ const ShowingPage = () => {
 
   const user = useSelector((state) => state.userState.id);
 
-  const disabledTickets = useSelector((state) =>
+  const boughtTickets = useSelector((state) =>
     state.ticketsState.tickets.filter((ticket) => {
-      return ticket.showingId === id;
+      return ticket.showingId === id && ticket.status === 1;
+    })
+  );
+
+  const bookedTickets = useSelector((state) =>
+    state.ticketsState.tickets.filter((ticket) => {
+      return ticket.showingId === id && ticket.status === 0;
     })
   );
 
@@ -36,6 +41,7 @@ const ShowingPage = () => {
   useEffect(() => {
     dispatch(fetchHalls());
     dispatch(fetchShowings());
+    dispatch(fetchTickets());
   }, []);
 
   useEffect(() => {
@@ -81,7 +87,8 @@ const ShowingPage = () => {
         <SeatsGrid
           X={hall.sizeX}
           Y={hall.sizeY}
-          disabled={disabledTickets}
+          booked={bookedTickets}
+          bought={boughtTickets}
           showing={show}
           user={user}
         />

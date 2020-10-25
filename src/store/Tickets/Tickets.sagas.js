@@ -1,4 +1,4 @@
-import { takeEvery, put, call } from "redux-saga/effects";
+import { takeEvery, put, call, delay } from "redux-saga/effects";
 import axios from "axios";
 import {
   BUY_TICKET,
@@ -78,6 +78,7 @@ function* buyTicket(action) {
       })
     );
     yield put(buyTicketSuccess(data.ticket));
+    yield delay(1000);
     yield put(resetTimer());
   } catch (e) {
     yield put(buyTicketFail(e));

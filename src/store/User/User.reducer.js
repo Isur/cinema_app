@@ -5,6 +5,7 @@ import {
   START_TIMER,
 } from "./User.types";
 import {
+  BUY_TICKET_SUCCESS,
   CREATE_TICKET_SUCCESS,
   DELETE_TICKET_SUCCESS,
 } from "../Tickets/Tickets.types";
@@ -18,6 +19,16 @@ const INITIAL_STATE = {
   accessToken: null,
   bookedTickets: [],
   timerStart: null,
+};
+
+const updateTicketsArray = (state, action) => {
+  const newIndex = state.bookedTickets.findIndex(
+    (ticket) => ticket.id === action.ticket.id
+  );
+  const newArray = [...state.bookedTickets];
+  newArray.splice(newIndex, 1, action.ticket);
+
+  return [...newArray];
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -51,6 +62,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         bookedTickets: [...state.bookedTickets, action.ticket],
+      };
+    case BUY_TICKET_SUCCESS:
+      return {
+        ...state,
+        bookedTickets: updateTicketsArray(state, action),
       };
     case DELETE_TICKET_SUCCESS:
       return {

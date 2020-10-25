@@ -61,7 +61,6 @@ function* editUser(action) {
           FirstName: action.firstName,
           LastName: action.lastName,
           UserName: action.userName,
-          Password: action.password,
           Role: action.role,
         },
         method: "PATCH",

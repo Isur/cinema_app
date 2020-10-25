@@ -49,6 +49,10 @@
       background-color: green;
     }
 
+    &.booked {
+      background-color: greenyellow;
+    }
+
     &.disabled {
       background-color: #9d9d9d;
 

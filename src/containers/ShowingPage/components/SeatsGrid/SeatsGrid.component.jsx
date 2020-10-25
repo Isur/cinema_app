@@ -8,11 +8,13 @@ import {
   deleteTicket,
 } from "../../../../store/Tickets/Tickets.actions";
 
-const SeatsGrid = ({ X, Y, user, showing, disabled }) => {
+const SeatsGrid = ({ X, Y, user, showing, booked, bought }) => {
   const dispatch = useDispatch();
 
   const loading = useSelector((state) => state.ticketsState.loading);
-  const bookedTickets = useSelector((state) => state.userState.bookedTickets);
+  const bookedTickets = useSelector((state) =>
+    state.userState.bookedTickets.filter((t) => t.status === 0)
+  );
 
   const isTicketsEqual = (t1, t2) => {
     return (
@@ -36,14 +38,25 @@ const SeatsGrid = ({ X, Y, user, showing, disabled }) => {
     }
   };
 
-  const isBooked = (r, s) => {
+  const isBookedByMe = (r, s) => {
     return bookedTickets.find((t) =>
       isTicketsEqual(t, { row: r + 1, seat: s + 1 })
     );
   };
 
-  const isDisabled = (r, s) => {
-    return disabled.find((t) => {
+  const isBooked = (r, s) => {
+    return booked.find((t) => {
+      return (
+        t.fieldX === s + 1 &&
+        t.fieldY === r + 1 &&
+        t.status === 0 &&
+        t.userId !== user
+      );
+    });
+  };
+
+  const isBought = (r, s) => {
+    return bought.find((t) => {
       return t.fieldX === s + 1 && t.fieldY === r + 1 && t.status === 1;
     });
   };
@@ -60,10 +73,12 @@ const SeatsGrid = ({ X, Y, user, showing, disabled }) => {
               return (
                 <div
                   className={`SeatsGrid__Seat ${
-                    isBooked(r, s) ? "selected" : ""
-                  } ${isDisabled(r, s) ? "disabled" : ""}`}
+                    isBooked(r, s) ? "booked" : ""
+                  } ${isBookedByMe(r, s) ? "selected" : ""} ${
+                    isBought(r, s) ? "disabled" : ""
+                  } `}
                   onClick={() =>
-                    isDisabled(r, s)
+                    isBought(r, s)
                       ? () => {}
                       : selectSeat({ row: r + 1, seat: s + 1 })
                   }

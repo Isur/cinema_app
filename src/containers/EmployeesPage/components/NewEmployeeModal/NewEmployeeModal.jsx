@@ -96,18 +96,20 @@ const NewEmployeeModal = ({ visible, onClose, employee }) => {
           >
             <Input />
           </Form.Item>
-          <Form.Item
-            name={"password"}
-            label={"Password"}
-            rules={[edited ? {} : { required: true }]}
-          >
-            <Input type={"password"} />
-          </Form.Item>
+          {!edited && (
+            <Form.Item
+              name={"password"}
+              label={"Password"}
+              rules={[edited ? {} : { required: true }]}
+            >
+              <Input type={"password"} />
+            </Form.Item>
+          )}
           <Form.Item name={"role"} label={"Role"} rules={[{ required: true }]}>
             <Select>
-              <Select.Option value={"User"}>User</Select.Option>
-              <Select.Option value={"Worker"}>Employee</Select.Option>
-              <Select.Option value={"Admin"}>Admin</Select.Option>
+              <Select.Option value={2}>User</Select.Option>
+              <Select.Option value={1}>Employee</Select.Option>
+              <Select.Option value={0}>Admin</Select.Option>
             </Select>
           </Form.Item>
           <Button block htmlType={"submit"}>

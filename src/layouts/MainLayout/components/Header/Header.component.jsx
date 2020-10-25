@@ -46,7 +46,7 @@ const HeaderBar = () => {
   return (
     <div className={"HeaderBar"}>
       <div className={"HeaderBar__basket"}>
-        <Badge count={tickets.length}>
+        <Badge count={tickets.filter((t) => t.status === 0).length}>
           <ShoppingOutlined className={"HeaderBar__basket__icon"} />
         </Badge>
         <span className={"HeaderBar__basket__timer"}>
@@ -55,9 +55,11 @@ const HeaderBar = () => {
             date={timerStart || Date.now()}
             renderer={countdownRenderer}
             onComplete={() => {
-              tickets.forEach((ticket) => {
-                dispatch(deleteTicket(ticket.id));
-              });
+              tickets
+                .filter((t) => t.status === 0)
+                .forEach((ticket) => {
+                  dispatch(deleteTicket(ticket.id));
+                });
             }}
           />
         </span>
