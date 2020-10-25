@@ -10,6 +10,8 @@ import { watchUserSaga } from "./User/User.sagas";
 import { watchMoviesSaga } from "./Movies/Movies.sagas";
 import { watchShowingsSaga } from "./Showings/Showings.sagas";
 import { watchHallsSaga } from "./Halls/Halls.sagas";
+import { watchTicketsSaga } from "./Tickets/Tickets.sagas";
+import { watchUsersSaga } from "./Users/Users.sagas";
 
 export const history = createBrowserHistory();
 
@@ -33,3 +35,5 @@ sagaMiddleware.run(watchUserSaga);
 sagaMiddleware.run(watchMoviesSaga);
 sagaMiddleware.run(watchShowingsSaga);
 sagaMiddleware.run(watchHallsSaga);
+sagaMiddleware.run(watchTicketsSaga);
+sagaMiddleware.run(watchUsersSaga);

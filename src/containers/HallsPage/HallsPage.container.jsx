@@ -14,6 +14,8 @@ const HallsPage = () => {
   const halls = useSelector((state) => state.hallsState.halls);
 
   const [creatingHall, setCreatingHall] = useState(false);
+  const [updatingHall, setUpdatingHall] = useState(false);
+  const [editedHall, setEditedHall] = useState(null);
 
   useEffect(() => {
     dispatch(fetchHalls());
@@ -22,8 +24,12 @@ const HallsPage = () => {
   return (
     <div className={"HallsPage"}>
       <NewHallModel
-        visible={creatingHall}
-        onClose={() => setCreatingHall(false)}
+        hall={editedHall}
+        visible={creatingHall || updatingHall}
+        onClose={() => {
+          setCreatingHall(false);
+          setUpdatingHall(false);
+        }}
       />
       <div
         style={{
@@ -55,7 +61,15 @@ const HallsPage = () => {
         }}
       >
         {halls.map((hall) => {
-          return <HallCard hall={hall} />;
+          return (
+            <HallCard
+              onClick={() => {
+                setEditedHall(hall.id);
+                setUpdatingHall(true);
+              }}
+              hall={hall}
+            />
+          );
         })}
       </div>
     </div>

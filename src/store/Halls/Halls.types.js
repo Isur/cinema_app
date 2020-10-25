@@ -2,6 +2,14 @@ export const FETCH_HALLS = "FETCH_HALLS";
 export const FETCH_HALLS_SUCCESS = "FETCH_HALLS_SUCCESS";
 export const FETCH_HALLS_FAIL = "FETCH_HALLS_FAIL";
 
+export const FETCH_HALL = "FETCH_HALL";
+export const FETCH_HALL_SUCCESS = "FETCH_HALL_SUCCESS";
+export const FETCH_HALL_FAIL = "FETCH_HALL_FAIL";
+
 export const ADD_HALL = "ADD_HALL";
 export const ADD_HALL_SUCCESS = "ADD_HALL_SUCCESS";
 export const ADD_HALL_FAIL = "ADD_HALL_FAIL";
+
+export const UPDATE_HALL = "UPDATE_HALL";
+export const UPDATE_HALL_SUCCESS = "UPDATE_HALL_SUCCESS";
+export const UPDATE_HALL_FAIL = "UPDATE_HALL_FAIL";

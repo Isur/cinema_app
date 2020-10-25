@@ -47,8 +47,10 @@ function* login(action) {
         method: "POST",
       })
     );
+    console.log(data);
     yield put(
       loginUserSuccess(
+        data.id,
         data.firstName,
         data.lastName,
         data.userName,

@@ -10,6 +10,7 @@ import { PlusCircleFilled } from "@ant-design/icons";
 import NewMovieModel from "./components/NewMovieModal/NewMovieModal.component";
 import { fetchHalls } from "../../store/Halls/Halls.actions";
 import NewShowingModel from "./components/NewShowingModal/NewShowingModal";
+import { fetchTickets } from "../../store/Tickets/Tickets.actions";
 
 const MoviesPage = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const MoviesPage = () => {
 
   useEffect(() => {
     dispatch(fetchMovies());
+    dispatch(fetchTickets());
     dispatch(fetchShowings());
     dispatch(fetchHalls());
   }, []);

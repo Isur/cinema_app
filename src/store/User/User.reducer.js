@@ -19,6 +19,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case LOGIN_USER_SUCCESS:
       return {
         ...state,
+        id: action.id,
         firstName: action.firstName,
         lastName: action.lastName,
         userName: action.userName,

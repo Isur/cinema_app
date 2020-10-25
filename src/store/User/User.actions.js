@@ -40,6 +40,7 @@ export const loginUser = (userName, password) => {
 };
 
 export const loginUserSuccess = (
+  id,
   firstName,
   lastName,
   userName,
@@ -48,6 +49,7 @@ export const loginUserSuccess = (
 ) => {
   return {
     type: LOGIN_USER_SUCCESS,
+    id,
     firstName,
     lastName,
     userName,

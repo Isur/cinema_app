@@ -7,6 +7,9 @@ import LoginPage from "./containers/LoginPage/LoginPage.container";
 import MoviesPage from "./containers/MoviesPage/MoviesPage.container";
 import HallsPage from "./containers/HallsPage/HallsPage.container";
 import AccountPage from "./containers/AccountPage/AccountPage.container";
+import ShowingPage from "./containers/ShowingPage/ShowingPage.container";
+import MoviePage from "./containers/MoviePage/MoviePage.container";
+import EmployeesPage from "./containers/EmployeesPage/EmployeesPage.container";
 
 function App() {
   return (
@@ -21,6 +24,11 @@ function App() {
           <MoviesPage />
         </MainLayout>
       </Route>
+      <Route exact path={"/movies/:id"}>
+        <MainLayout>
+          <MoviePage />
+        </MainLayout>
+      </Route>
       <Route exact path={"/halls"}>
         <MainLayout>
           <HallsPage />
@@ -29,6 +37,16 @@ function App() {
       <Route exact path={"/account"}>
         <MainLayout>
           <AccountPage />
+        </MainLayout>
+      </Route>
+      <Route exact path={"/employees"}>
+        <MainLayout>
+          <EmployeesPage />
+        </MainLayout>
+      </Route>
+      <Route exact path={"/showings/:id"}>
+        <MainLayout>
+          <ShowingPage />
         </MainLayout>
       </Route>
     </Switch>

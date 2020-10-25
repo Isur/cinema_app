@@ -8,10 +8,12 @@ import {
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { push } from "connected-react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const SiderMenu = () => {
   const dispatch = useDispatch();
+
+  const role = useSelector((state) => state.userState.role);
 
   return (
     <Menu
@@ -27,20 +29,24 @@ const SiderMenu = () => {
       >
         Repertoire
       </Menu.Item>
-      <Menu.Item
-        className={"SiderMenu__item"}
-        icon={<PlaySquareOutlined />}
-        key="halls"
-      >
-        Halls
-      </Menu.Item>
-      <Menu.Item
-        className={"SiderMenu__item"}
-        icon={<IdcardFilled />}
-        key="tickets"
-      >
-        My Tickets
-      </Menu.Item>
+      {(role === "Admin" || role === "Employee") && (
+        <Menu.Item
+          className={"SiderMenu__item"}
+          icon={<PlaySquareOutlined />}
+          key="halls"
+        >
+          Halls
+        </Menu.Item>
+      )}
+      {role === "Admin" && (
+        <Menu.Item
+          className={"SiderMenu__item"}
+          icon={<IdcardFilled />}
+          key="employees"
+        >
+          Employees
+        </Menu.Item>
+      )}
       <Menu.Item
         className={"SiderMenu__item"}
         icon={<SettingFilled />}
